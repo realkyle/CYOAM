@@ -1,0 +1,152 @@
+/* ── Reader page styles ──────────────────────────────────────────────────── */
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+
+/* ── Top bar ──────────────────────────────────────────────────────────────── */
+
+.topbar {
+  width: 100%;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: .6rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: .85rem;
+  color: var(--muted);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.topbar__home {
+  color: var(--accent);
+  font-weight: 600;
+  font-family: var(--font-serif);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.topbar__breadcrumb {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-sans);
+}
+
+.topbar__breadcrumb span { color: var(--muted); }
+.topbar__breadcrumb span.current { color: var(--accent); font-weight: 600; }
+
+.topbar__actions { display: flex; gap: .5rem; flex-shrink: 0; }
+
+/* ── Main reading column ─────────────────────────────────────────────────── */
+
+.reader {
+  width: 100%;
+  max-width: 660px;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+/* Page number badge */
+.page-badge {
+  font-size: .75rem;
+  font-family: var(--font-sans);
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: 1.25rem;
+}
+
+/* Story text */
+.story-text {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: var(--text);
+  white-space: pre-wrap;
+}
+
+/* ── Choices area ────────────────────────────────────────────────────────── */
+
+.choices {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+
+.choices__heading {
+  font-size: .75rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: .25rem;
+}
+
+.choice-btn {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: .85rem 1.1rem;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color .15s, background .15s, transform .1s;
+  line-height: 1.5;
+}
+
+.choice-btn:hover {
+  border-color: var(--accent);
+  background: #fdf5ee;
+  transform: translateX(3px);
+}
+
+.choice-btn:active { transform: translateX(1px) scale(.99); }
+
+/* ── Ending screen ───────────────────────────────────────────────────────── */
+
+.ending {
+  margin-top: 2.5rem;
+  padding: 1.75rem;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.ending__title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+
+.ending__path {
+  font-size: .85rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+.ending__actions { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+
+/* ── Page transition ─────────────────────────────────────────────────────── */
+
+.reader { animation: fadeIn .25s ease; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.page-enter {
+  animation: fadeIn .22s ease;
+}

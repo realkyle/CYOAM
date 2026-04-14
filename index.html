@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Cave of Time — CYOA</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Landing page layout ─────────────────────────────────────────────── */
+    body { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+    .hero {
+      text-align: center;
+      max-width: 580px;
+      padding: 3rem 2rem;
+    }
+
+    .hero__eyebrow {
+      font-size: .8rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .75rem;
+    }
+
+    .hero__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      line-height: 1.15;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .hero__subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    /* ── Mode cards ──────────────────────────────────────────────────────── */
+    .modes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      width: 100%;
+      margin-bottom: 2.5rem;
+    }
+
+    .mode-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .75rem;
+      padding: 2rem 1.5rem;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color .18s, box-shadow .18s, transform .12s;
+    }
+
+    .mode-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 16px rgba(0,0,0,.16);
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+
+    .mode-card__icon {
+      font-size: 2.6rem;
+      line-height: 1;
+    }
+
+    .mode-card__name {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      color: var(--accent);
+    }
+
+    .mode-card__desc {
+      font-size: .88rem;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* ── Footer links ────────────────────────────────────────────────────── */
+    .footer-links {
+      font-size: .82rem;
+      color: var(--muted);
+    }
+
+    .footer-links a { color: var(--muted); text-decoration: underline; }
+    .footer-links a:hover { color: var(--accent); }
+
+    @media (max-width: 420px) {
+      .modes { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="hero">
+    <p class="hero__eyebrow">Choose Your Own Adventure</p>
+    <h1 class="hero__title">The Cave of Time</h1>
+    <p class="hero__subtitle">
+      A classic branching story — follow the path you choose,
+      or explore every possibility in the author view.
+    </p>
+
+    <nav class="modes" aria-label="Choose a mode">
+      <a class="mode-card" href="reader.html">
+        <span class="mode-card__icon" aria-hidden="true">📖</span>
+        <span class="mode-card__name">Read the Story</span>
+        <span class="mode-card__desc">
+          Make choices, follow your path, and see where the cave leads you.
+        </span>
+      </a>
+      <a class="mode-card" href="author.html">
+        <span class="mode-card__icon" aria-hidden="true">🗺</span>
+        <span class="mode-card__name">Author View</span>
+        <span class="mode-card__desc">
+          Explore the full story graph, inspect any page,
+          and see how all branches connect.
+        </span>
+      </a>
+    </nav>
+
+    <p class="footer-links">
+      Based on <em>The Cave of Time</em> by Edward Packard &nbsp;·&nbsp;
+      <a href="https://github.com/realkyle/choose-your-own-adventure" target="_blank" rel="noopener">
+        GitHub Repository
+      </a>
+    </p>
+  </main>
+</body>
+</html>

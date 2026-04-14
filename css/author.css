@@ -1,0 +1,198 @@
+/* ── Author view styles ──────────────────────────────────────────────────── */
+
+body { overflow: hidden; height: 100vh; display: flex; flex-direction: column; }
+
+/* ── Top bar ─────────────────────────────────────────────────────────────── */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: .6rem 1.25rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.topbar__home {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.topbar__stats {
+  display: flex;
+  gap: 1.25rem;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  font-size: .78rem;
+  line-height: 1.3;
+}
+
+.stat__label { color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+.stat__value { font-weight: 700; color: var(--text); font-size: .95rem; }
+
+.legend {
+  display: flex;
+  gap: .85rem;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: .78rem;
+  color: var(--muted);
+}
+
+.legend-item { display: flex; align-items: center; gap: .3rem; }
+.legend-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Two-panel layout ────────────────────────────────────────────────────── */
+
+.workspace {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Graph panel */
+.graph-panel {
+  flex: 1 1 60%;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+#graph-svg {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+
+#graph-svg:active { cursor: grabbing; }
+
+/* Zoom controls */
+.zoom-controls {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  display: flex;
+  gap: .4rem;
+}
+
+.zoom-btn {
+  width: 32px; height: 32px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .12s;
+}
+.zoom-btn:hover { background: #f0e8d8; }
+
+/* Detail panel */
+.detail-panel {
+  flex: 0 0 360px;
+  border-left: 1px solid var(--border);
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.detail-header {
+  padding: 1rem 1.25rem .75rem;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.detail-header h2 {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin-bottom: .25rem;
+}
+
+.detail-meta {
+  font-size: .8rem;
+  color: var(--muted);
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.detail-meta span strong { color: var(--text); }
+
+.detail-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 1.25rem;
+  font-family: var(--font-serif);
+  font-size: .95rem;
+  line-height: 1.8;
+  color: var(--text);
+  white-space: pre-wrap;
+}
+
+.detail-empty {
+  color: var(--muted);
+  font-style: italic;
+  font-family: var(--font-sans);
+  font-size: .9rem;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* ── Graph node styles (SVG) ─────────────────────────────────────────────── */
+/* Applied as classes on <g class="node"> elements */
+
+.node circle, .node rect {
+  stroke-width: 1.5;
+  transition: opacity .15s;
+}
+
+.node text {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  fill: #fff;
+  pointer-events: none;
+  dominant-baseline: middle;
+  text-anchor: middle;
+}
+
+.node--normal   circle { fill: #6d8fb5; stroke: #3a5f8a; }
+.node--trunk    circle { fill: var(--trunk); stroke: #0d3b6e; }
+.node--ending   circle { fill: var(--terminal); stroke: #1b5e20; }
+.node--stub     circle { fill: var(--stub); stroke: #7a5800; }
+.node--unreachable circle { fill: var(--unreachable); stroke: #616161; }
+
+.node--selected circle { stroke: #ff6f00; stroke-width: 3; }
+
+.link {
+  stroke: #bbb;
+  stroke-width: 1.2;
+  fill: none;
+  marker-end: url(#arrowhead);
+}
+
+.link--trunk    { stroke: var(--trunk); stroke-width: 1.8; }
+.link--selected { stroke: #ff6f00; stroke-width: 2; }
+
+/* Fade non-descendants when a node is selected */
+.node--faded circle  { opacity: .25; }
+.node--faded text    { opacity: .25; }
+.link--faded         { opacity: .15; }
+
+@media (max-width: 700px) {
+  .detail-panel { flex: 0 0 260px; }
+}

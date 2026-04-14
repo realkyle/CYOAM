@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Read — The Cave of Time</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/reader.css">
+</head>
+<body>
+
+  <!-- ── Top navigation bar ────────────────────────────────────────────── -->
+  <header class="topbar">
+    <a class="topbar__home" href="index.html">Cave of Time</a>
+    <div class="topbar__breadcrumb" id="breadcrumb" aria-label="Path so far"></div>
+    <div class="topbar__actions">
+      <button class="btn btn--outline" id="btn-back" disabled>Back</button>
+      <button class="btn btn--outline" id="btn-restart">Restart</button>
+    </div>
+  </header>
+
+  <!-- ── Reading area ──────────────────────────────────────────────────── -->
+  <main class="reader" id="reader-main">
+    <p class="loading">Loading story…</p>
+  </main>
+
+  <script type="module" src="js/reader.js"></script>
+</body>
+</html>

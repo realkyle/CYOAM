@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Author View — The Cave of Time</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/author.css">
+</head>
+<body>
+
+  <!-- ── Top bar ───────────────────────────────────────────────────────── -->
+  <header class="topbar">
+    <a class="topbar__home" href="index.html">← Cave of Time</a>
+
+    <div class="topbar__stats" id="stats-bar">
+      <div class="stat">
+        <span class="stat__label">Pages</span>
+        <span class="stat__value" id="stat-total">—</span>
+      </div>
+      <div class="stat">
+        <span class="stat__label">Endings</span>
+        <span class="stat__value" id="stat-endings">—</span>
+      </div>
+      <div class="stat">
+        <span class="stat__label">Incomplete</span>
+        <span class="stat__value" id="stat-stubs">—</span>
+      </div>
+      <div class="stat">
+        <span class="stat__label">Unreachable</span>
+        <span class="stat__value" id="stat-unreachable">—</span>
+      </div>
+    </div>
+
+    <div class="legend" aria-label="Node colour legend">
+      <span class="legend-item">
+        <span class="legend-dot" style="background:var(--trunk)"></span>Main trunk
+      </span>
+      <span class="legend-item">
+        <span class="legend-dot" style="background:var(--terminal)"></span>Ending
+      </span>
+      <span class="legend-item">
+        <span class="legend-dot" style="background:var(--stub)"></span>Incomplete
+      </span>
+      <span class="legend-item">
+        <span class="legend-dot" style="background:var(--unreachable)"></span>Unreachable
+      </span>
+      <span class="legend-item">
+        <span class="legend-dot" style="background:#6d8fb5"></span>Story page
+      </span>
+    </div>
+  </header>
+
+  <!-- ── Workspace ─────────────────────────────────────────────────────── -->
+  <div class="workspace">
+
+    <!-- Graph canvas -->
+    <section class="graph-panel" aria-label="Story graph">
+      <svg id="graph-svg" aria-label="Interactive story graph">
+        <defs>
+          <marker id="arrowhead" markerWidth="8" markerHeight="6"
+                  refX="8" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#bbb"/>
+          </marker>
+          <marker id="arrowhead-trunk" markerWidth="8" markerHeight="6"
+                  refX="8" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="var(--trunk)"/>
+          </marker>
+          <marker id="arrowhead-selected" markerWidth="8" markerHeight="6"
+                  refX="8" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#ff6f00"/>
+          </marker>
+        </defs>
+        <g id="graph-root"></g>
+      </svg>
+
+      <div class="zoom-controls">
+        <button class="zoom-btn" id="zoom-in"  title="Zoom in">+</button>
+        <button class="zoom-btn" id="zoom-out" title="Zoom out">−</button>
+        <button class="zoom-btn" id="zoom-fit" title="Fit to view" style="font-size:.75rem;width:auto;padding:0 .5rem">Fit</button>
+      </div>
+    </section>
+
+    <!-- Detail panel -->
+    <aside class="detail-panel" id="detail-panel" aria-label="Page details">
+      <div class="detail-header">
+        <h2 id="detail-title">Story Graph</h2>
+        <div class="detail-meta" id="detail-meta"></div>
+      </div>
+      <div class="detail-body" id="detail-body">
+        <p class="detail-empty">Click any node to read that page.</p>
+      </div>
+    </aside>
+  </div>
+
+  <!-- d3 v7 from CDN (only dependency) -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  <script type="module" src="js/author.js"></script>
+</body>
+</html>
