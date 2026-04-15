@@ -110,7 +110,7 @@ Created Codebase.md as a persistent project-state note capturing the corrected O
 
 1) read through the documents to understand project and state my steps and approach to completing this assignment (AssignmentInstruction.md read first and then rest of the .md files)
 
-    note: we got together to create braindstorm and todo list in which then asked AI to give any suggestiins and to sort our writing into a document to be read
+    note: we got together to create braindstorm and todo list in which then asked AI to give any suggestions and to sort our writing into a document to be read
 
 2) review the brainstorm.md and todo.md and move into planning the web app
 
@@ -122,11 +122,11 @@ Created Codebase.md as a persistent project-state note capturing the corrected O
 
 4) ive completed phase5 and believe the work does not need to be polished, could you create a README.md
 
-    note: complete phase 5 manually to see the MVP
+    note: complete phase 5 manually to see and test the MVP
 
 (using Github copilot)
 
-5) ## Missing prompt information to implement phase 6 of todo.md
+5) ### Missing prompt information to implement phase 6 of todo.md
 
     note: implemented the rest of phase 6 excluding Codebase.md
 
