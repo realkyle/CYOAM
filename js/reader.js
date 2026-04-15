@@ -10,15 +10,19 @@ import { loadGraph } from './graph.js';
 
 // ── DOM references ─────────────────────────────────────────────────────────
 
-const readerMain  = document.getElementById('reader-main');
-const breadcrumb  = document.getElementById('breadcrumb');
-const btnBack     = document.getElementById('btn-back');
-const btnRestart  = document.getElementById('btn-restart');
+const readerMain      = document.getElementById('reader-main');
+const breadcrumb      = document.getElementById('breadcrumb');
+const endingTracker   = document.getElementById('ending-tracker');
+const btnBack         = document.getElementById('btn-back');
+const btnRestart      = document.getElementById('btn-restart');
 
 // ── State ──────────────────────────────────────────────────────────────────
 
-let graph   = null;
+const ENDING_TRACKER_KEY = 'cyoa-found-endings';
+
+let graph = null;
 let history = []; // stack of page numbers visited
+let foundEndings = new Set();
 
 // ── Initialise ─────────────────────────────────────────────────────────────
 
@@ -29,6 +33,9 @@ async function init() {
     readerMain.innerHTML = `<p class="error-msg">Failed to load story data: ${err.message}</p>`;
     return;
   }
+
+  loadFoundEndings();
+  updateEndingTracker();
 
   btnBack.addEventListener('click', goBack);
   btnRestart.addEventListener('click', restart);
@@ -81,7 +88,9 @@ function renderPage(pageNum) {
   for (const c of page.choices) labelMap[c.target] = c.label;
 
   const isEnding = page.isTerminal || page.isEnding;
-
+  if (isEnding) {
+  markEndingFound(pageNum);
+  }
   // Build HTML
   let html = `
     <div class="page-enter">
@@ -165,6 +174,53 @@ function escapeHtml(str) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+// ── ending tracker ────────────────────────────────────────
+function loadFoundEndings() {
+  try {
+    const raw = localStorage.getItem(ENDING_TRACKER_KEY);
+    if (!raw) {
+      foundEndings = new Set();
+      return;
+    }
+    foundEndings = new Set(JSON.parse(raw));
+  } catch (err) {
+    console.warn('Could not load ending tracker from localStorage:', err);
+    foundEndings = new Set();
+  }
+}
+
+function saveFoundEndings() {
+  try {
+    localStorage.setItem(
+      ENDING_TRACKER_KEY,
+      JSON.stringify([...foundEndings])
+    );
+  } catch (err) {
+    console.warn('Could not save ending tracker to localStorage:', err);
+  }
+}
+
+function getTotalEndingCount() {
+  if (!graph || !graph.pages) return 0;
+
+  return Object.values(graph.pages).filter(page =>
+    page.isTerminal || page.isEnding
+  ).length;
+}
+
+function updateEndingTracker() {
+  if (!endingTracker) return;
+
+  const total = getTotalEndingCount();
+  endingTracker.textContent = `Endings found: ${foundEndings.size} / ${total}`;
+}
+
+function markEndingFound(pageNum) {
+  foundEndings.add(String(pageNum));
+  saveFoundEndings();
+  updateEndingTracker();
 }
 
 // ── Boot ───────────────────────────────────────────────────────────────────
