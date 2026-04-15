@@ -101,3 +101,40 @@ This should be the right “read first” file for continuing the project.Create
 
 Created Codebase.md as a persistent project-state note capturing the corrected OCR workflow, canonical outputs, current scripts, deleted obsolete artifacts, and the exact commands and rules needed to resume this project without repeating prior investigation.
 ```
+
+---
+
+## 14 April 2026
+
+(using Claude Code)
+
+1) read through the documents to understand project and state my steps and approach to completing this assignment (AssignmentInstruction.md read first and then rest of the .md files)
+
+    note: we got together to create braindstorm and todo list in which then asked AI to give any suggestiins and to sort our writing into a document to be read
+
+2) review the brainstorm.md and todo.md and move into planning the web app
+
+    note: went over the planning of web app
+
+3) go ahead and begin
+
+    note: watched and looked over the changes that were made one by one (with approval)
+
+4) ive completed phase5 and believe the work does not need to be polished, could you create a README.md
+
+    note: complete phase 5 manually to see the MVP
+
+(using Github copilot)
+
+5) ## Missing prompt information to implement phase 6 of todo.md
+
+    note: implemented the rest of phase 6 excluding Codebase.md
+
+6) Update Codebase.md to document the new web app architecture
+
+   this is my project for Create your own adventure. can you update Codebase.md to document the new web app architecture please?
+
+7) phase6 was implemented are there any other steps missing
+
+    note: final look over by hand and AI
+
