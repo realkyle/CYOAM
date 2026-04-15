@@ -46,12 +46,26 @@ async function init() {
 // ── Navigation ─────────────────────────────────────────────────────────────
 
 function navigateTo(pageNum) {
-  history.push(pageNum);
-  renderPage(pageNum);
-  updateBreadcrumb();
-  btnBack.disabled = history.length <= 1;
-  // Scroll to top of reading area
-  readerMain.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const currentPage = readerMain.querySelector('.page-enter, .page-exit, .page-content');
+
+  const doNavigation = () => {
+    history.push(pageNum);
+    renderPage(pageNum);
+    updateBreadcrumb();
+    btnBack.disabled = history.length <= 1;
+    readerMain.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  if (currentPage) {
+    currentPage.classList.remove('page-enter');
+    currentPage.classList.add('page-exit');
+
+    setTimeout(() => {
+      doNavigation();
+    }, 180);
+  } else {
+    doNavigation();
+  }
 }
 
 function goBack() {
@@ -93,7 +107,7 @@ function renderPage(pageNum) {
   }
   // Build HTML
   let html = `
-    <div class="page-enter">
+    <div class="page-content page-enter">
       <p class="page-badge">Page ${pageNum}</p>
       <div class="story-text">${escapeHtml(displayText)}</div>
   `;
