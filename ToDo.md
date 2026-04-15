@@ -63,8 +63,7 @@ Items for AI to complete, in priority order.
 - [ ] **6.1** Add localStorage-based ending tracker in reader (show which endings found)
 - [ ] **6.2** Add page-transition fade animation in reader
 - [ ] **6.3** Add graph zoom/pan in author view
-- [ ] **6.4** Add "Download page as .txt" button in author detail panel
-- [ ] **6.5** Update `Codebase.md` to document the new web app architecture
+- [ ] **6.4** Update `Codebase.md` to document the new web app architecture
 
 ---
 
